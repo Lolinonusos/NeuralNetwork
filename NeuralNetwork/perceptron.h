@@ -10,27 +10,34 @@ public:
 		HTAN
 	};
 
-	Perceptron(int input, 
-		int output, 
-		int hiddenLayer,
-		int hiddenLayerAmount,
-		int neuronsPerLayer, 
-		double learningRate, 
-		ACTIVATION_FUNCTION af, 
-		ACTIVATION_FUNCTION afOut);
+	Perceptron(int _numInput,
+		int _numOutputNeurons,
+		int _numHiddenLayers,
+		int _numHiddenLayerNeurons,
+		double _learningRate,
+		ACTIVATION_FUNCTION _afHiddenLayer,
+		ACTIVATION_FUNCTION _afOutputLayer);
 
 	~Perceptron();
 
-	std::vector<double> Train(std::vector<double> inputs, std::vector<double> desiredOutputs, bool updateWeight = true);
+	int numInputNeurons{};
+	int numOutputNeurons{};
+	int numHiddenLayers{};
+	int numHiddenLayerNeurons{};
+	double learningRate{};
+
+	std::vector<std::shared_ptr<NetworkLayer>> layers;
+
+	std::vector<double> ProcessNetwork(std::vector<double> inputs, std::vector<double> desiredOutputs, bool updateWeight = true);
 
 	void Save();
 	void Load();
 
 private:
-	ACTIVATION_FUNCTION afHiddenLayer;
-	ACTIVATION_FUNCTION afOutputLayer;
+	ACTIVATION_FUNCTION afHiddenLayer{};
+	ACTIVATION_FUNCTION afOutputLayer{};
 
-	void UpdateWeights();
+	void UpdateWeights(std::vector<double> outputs, std::vector<double> desiredOutput);
 
 	double GetActivationFunction(ACTIVATION_FUNCTION function, double x);
 

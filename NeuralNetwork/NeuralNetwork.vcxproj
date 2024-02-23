@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="edge.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="networkLayer.cpp" />
     <ClCompile Include="neuron.cpp" />
     <ClCompile Include="perceptron.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="edge.h" />
     <ClInclude Include="networkLayer.h" />
     <ClInclude Include="neuron.h" />
     <ClInclude Include="perceptron.h" />
